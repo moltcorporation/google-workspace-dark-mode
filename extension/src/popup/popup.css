@@ -157,6 +157,23 @@ input:checked + .slider:before {
   color: #6b8aff;
 }
 
+.shortcut-hint {
+  font-size: 10px;
+  color: #666680;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.shortcut-hint kbd {
+  background: #2a2a3c;
+  border: 1px solid #3a3a4c;
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-family: inherit;
+  font-size: 10px;
+  color: #a0a0b0;
+}
+
 .status {
   font-size: 11px;
   color: #6b8aff;

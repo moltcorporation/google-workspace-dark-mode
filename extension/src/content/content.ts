@@ -44,15 +44,15 @@ const themes: Record<string, ThemeColors> = {
 
 function generateCSS(colors: ThemeColors): string {
   return `
-    /* === Google Workspace Dark Mode === */
+    /* === Google Workspace Dark Mode v1.1 === */
 
-    /* Global overrides for all Google Workspace apps */
+    /* Global overrides */
     html, body {
       background-color: ${colors.bg} !important;
       color: ${colors.text} !important;
     }
 
-    /* Top toolbar / app bar */
+    /* Top toolbar / app bar — Docs, Sheets, Slides, Drive */
     .docs-titlebar-buttons,
     .docs-menubar,
     .docs-menubar-menu,
@@ -65,9 +65,12 @@ function generateCSS(colors: ThemeColors): string {
     [role="toolbar"],
     [role="menubar"],
     header,
-    .gb_Td,
-    .gb_Ed,
-    .gb_3d {
+    .gb_Td, .gb_Ed, .gb_3d,
+    .docs-branding-bar,
+    .docs-primary-toolbars,
+    .docs-titlebar-container,
+    #gb,
+    .gb_Fc, .gb_Gc, .gb_Hc {
       background-color: ${colors.bgSecondary} !important;
       color: ${colors.text} !important;
     }
@@ -80,7 +83,10 @@ function generateCSS(colors: ThemeColors): string {
     [role="menuitem"],
     [role="listbox"],
     [role="option"],
-    .docs-material .goog-menu {
+    .docs-material .goog-menu,
+    .goog-menuitem-content,
+    .goog-option,
+    .apps-menu-hide-mnemonics {
       background-color: ${colors.bgSecondary} !important;
       color: ${colors.text} !important;
       border-color: ${colors.border} !important;
@@ -88,7 +94,8 @@ function generateCSS(colors: ThemeColors): string {
 
     [role="menuitem"]:hover,
     .goog-menuitem-highlight,
-    .goog-option-selected {
+    .goog-option-selected,
+    .goog-menuitem-hover {
       background-color: ${colors.bgTertiary} !important;
     }
 
@@ -99,7 +106,10 @@ function generateCSS(colors: ThemeColors): string {
     .script-application-sidebar,
     .docs-side-panel,
     .navigation-widget-hat,
-    .kix-appview-editor-container {
+    .kix-appview-editor-container,
+    .docs-companion-app-container,
+    .docs-dictionary-widget,
+    .docs-outline-container {
       background-color: ${colors.bg} !important;
       color: ${colors.text} !important;
     }
@@ -108,7 +118,8 @@ function generateCSS(colors: ThemeColors): string {
     .kix-appview-editor,
     .docs-editor,
     .kix-page-paginated,
-    .docs-editor-container {
+    .docs-editor-container,
+    .kix-paginateddocumentplugin {
       background-color: ${colors.bg} !important;
     }
 
@@ -118,41 +129,92 @@ function generateCSS(colors: ThemeColors): string {
       background-color: ${colors.canvasBg} !important;
     }
 
-    /* Sheets specific */
+    /* Docs ruler */
+    .kix-ruler,
+    .kix-ruler-top-container,
+    .kix-horizontal-ruler-container {
+      background-color: ${colors.bgSecondary} !important;
+      border-color: ${colors.border} !important;
+    }
+
+    /* ---- Sheets specific ---- */
     .waffle-content-container,
     .grid-container,
     .native-scrollbar,
     .docs-sheet-container-bar,
     .docs-sheet-tab,
-    .docs-sheet-active-tab {
+    .docs-sheet-active-tab,
+    .docs-sheet-tab-caption,
+    .waffle,
+    .waffle-collaborator-marker-stripe,
+    .docs-sheet-toolbar-bar {
       background-color: ${colors.bg} !important;
       color: ${colors.text} !important;
     }
 
-    /* Sheets cells */
+    /* Sheets cells and headers */
     .cell-input,
-    .cell-input > div {
+    .cell-input > div,
+    .waffle td,
+    .waffle th,
+    .row-header-wrapper,
+    .column-headers-container,
+    .row-headers-container {
       color: ${colors.text} !important;
+    }
+
+    /* Sheets frozen rows/columns background */
+    .frozen-row, .frozen-column,
+    .row-header, .column-header {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+      border-color: ${colors.border} !important;
     }
 
     /* Sheets formula bar */
     .formulabar-input-container,
-    .cell-name {
+    .cell-name,
+    .formulabar-formula,
+    .waffle-name-box {
       background-color: ${colors.bgSecondary} !important;
       color: ${colors.text} !important;
     }
 
-    /* Slides specific */
+    /* Sheets bottom toolbar / tab bar */
+    .docs-sheet-tab-bar,
+    .docs-sheet-add-button,
+    .docs-sheet-menu-button,
+    .docs-sheet-status-bar {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+      border-color: ${colors.border} !important;
+    }
+
+    /* ---- Slides specific ---- */
     .punch-viewer-container,
     .punch-viewer-background,
     .punch-filmstrip-scroll,
     .punch-filmstrip,
-    .punch-viewer-speakernotes-text-body {
+    .punch-viewer-speakernotes-text-body,
+    .punch-viewer-speakernotes-background,
+    .punch-viewer-right-toolbox,
+    .punch-viewer-left-toolbox,
+    .punch-filmstrip-thumbnail,
+    .punch-viewer-navbar,
+    .punch-viewer-content {
       background-color: ${colors.bg} !important;
       color: ${colors.text} !important;
     }
 
-    /* Drive specific */
+    /* Slides panel and animations sidebar */
+    .punch-animations-panel,
+    .punch-transitions-panel,
+    .punch-view-explore-panel {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* ---- Drive specific ---- */
     .a-s-tb-lc,
     [data-view-type],
     .a-s-La-N,
@@ -161,7 +223,12 @@ function generateCSS(colors: ThemeColors): string {
     .a-nf-gjns,
     .a-s-tb-sc,
     .a-b-c,
-    .a-J-ji {
+    .a-J-ji,
+    .a-t-R,
+    .a-s-Li,
+    .a-b-La-Nm,
+    .a-s-Le-je,
+    .a-s-tb-th {
       background-color: ${colors.bg} !important;
       color: ${colors.text} !important;
     }
@@ -170,16 +237,38 @@ function generateCSS(colors: ThemeColors): string {
     .a-s-tb-sc-Ye-bj,
     [role="row"],
     [role="gridcell"],
-    [role="rowheader"] {
+    [role="rowheader"],
+    .a-s-gd,
+    .a-b-gb-n,
+    [data-target="doc"] {
       color: ${colors.text} !important;
     }
+
+    /* Drive left nav */
+    .a-b-nf,
+    .a-b-nf-hd,
+    .a-b-nf-hd-Ae {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Drive hover states */
+    .a-b-gb-n:hover,
+    .a-b-gb-n.a-b-gb-n-Wd {
+      background-color: ${colors.bgTertiary} !important;
+    }
+
+    /* ---- Shared UI elements ---- */
 
     /* Dialogs and modals */
     [role="dialog"],
     [role="alertdialog"],
     .modal-dialog,
     .docs-dialog,
-    .goog-dialog {
+    .goog-dialog,
+    .modal-dialog-content,
+    .picker-dialog,
+    .picker-dialog-content {
       background-color: ${colors.bgSecondary} !important;
       color: ${colors.text} !important;
       border-color: ${colors.border} !important;
@@ -189,21 +278,33 @@ function generateCSS(colors: ThemeColors): string {
     .goog-button,
     .goog-flat-button,
     [role="button"],
-    .goog-toolbar-button {
+    .goog-toolbar-button,
+    .jfk-button {
       color: ${colors.text} !important;
     }
 
     /* Input fields */
     input, textarea, select,
-    .docs-title-input {
+    .docs-title-input,
+    .docs-findinput-input,
+    .docs-findbar-input {
       background-color: ${colors.bgTertiary} !important;
+      color: ${colors.text} !important;
+      border-color: ${colors.border} !important;
+    }
+
+    /* Find and replace bar */
+    .docs-findbar,
+    .docs-findinput-container {
+      background-color: ${colors.bgSecondary} !important;
       color: ${colors.text} !important;
       border-color: ${colors.border} !important;
     }
 
     /* Tooltips */
     .goog-tooltip,
-    [role="tooltip"] {
+    [role="tooltip"],
+    .docs-tp-popup {
       background-color: ${colors.bgTertiary} !important;
       color: ${colors.text} !important;
     }
@@ -243,9 +344,10 @@ function generateCSS(colors: ThemeColors): string {
       border-color: ${colors.border} !important;
     }
 
-    /* Status bar */
+    /* Status bar / butterbar */
     .docs-butterbar-container,
-    .docs-butterbar-wrap {
+    .docs-butterbar-wrap,
+    .docs-butterbar-message {
       background-color: ${colors.bgSecondary} !important;
       color: ${colors.text} !important;
     }
@@ -253,14 +355,38 @@ function generateCSS(colors: ThemeColors): string {
     /* Comment threads */
     .docos-anchoreddocoview,
     .docos-docoview,
-    .docos-replyview {
+    .docos-replyview,
+    .docos-input-textarea,
+    .docos-streamdocoview,
+    .docos-anchoredcontentreplyview {
       background-color: ${colors.bgSecondary} !important;
       color: ${colors.text} !important;
+    }
+
+    /* Share dialog and people chips */
+    .docs-share-dialog,
+    .docs-share-dialog-content,
+    .docs-collab-bubble,
+    .docs-collab-caret-label {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Google account menu bar items */
+    .gb_Nc, .gb_Oc, .gb_Pc, .gb_Rc {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Prevent white flash on page load */
+    html {
+      color-scheme: dark !important;
     }
   `;
 }
 
 const STYLE_ID = "gws-dark-mode-styles";
+let observer: MutationObserver | null = null;
 
 function applyTheme(themeName: string): void {
   const colors = themes[themeName];
@@ -273,11 +399,79 @@ function applyTheme(themeName: string): void {
     (document.head || document.documentElement).appendChild(styleEl);
   }
   styleEl.textContent = generateCSS(colors);
+
+  startObserver(themeName);
 }
 
 function removeTheme(): void {
   const styleEl = document.getElementById(STYLE_ID);
   if (styleEl) styleEl.remove();
+  stopObserver();
+}
+
+function startObserver(themeName: string): void {
+  stopObserver();
+
+  const colors = themes[themeName];
+  if (!colors) return;
+
+  observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
+
+        // Re-inject style if it was removed (Google sometimes clears head)
+        if (!document.getElementById(STYLE_ID)) {
+          applyTheme(themeName);
+          return;
+        }
+
+        // Handle dynamically added iframes (Google Docs editor frames)
+        const iframes = node.tagName === "IFRAME" ? [node as HTMLIFrameElement] : node.querySelectorAll("iframe");
+        for (const iframe of iframes) {
+          injectIntoIframe(iframe as HTMLIFrameElement, themeName);
+        }
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+  });
+}
+
+function stopObserver(): void {
+  if (observer) {
+    observer.disconnect();
+    observer = null;
+  }
+}
+
+function injectIntoIframe(iframe: HTMLIFrameElement, themeName: string): void {
+  const colors = themes[themeName];
+  if (!colors) return;
+
+  const inject = () => {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc) return;
+      if (doc.getElementById(STYLE_ID)) return;
+
+      const styleEl = doc.createElement("style");
+      styleEl.id = STYLE_ID;
+      styleEl.textContent = generateCSS(colors);
+      (doc.head || doc.documentElement).appendChild(styleEl);
+    } catch {
+      // Cross-origin iframe — content script with all_frames handles it
+    }
+  };
+
+  if (iframe.contentDocument?.readyState === "complete") {
+    inject();
+  } else {
+    iframe.addEventListener("load", inject, { once: true });
+  }
 }
 
 function getCurrentApp(): string {
@@ -295,14 +489,14 @@ function getCurrentApp(): string {
 
 async function init(): Promise<void> {
   const result = await chrome.storage.sync.get(["enabled", "theme"]);
-  const enabled = result.enabled !== false; // default to enabled
-  const theme = result.theme || "dim"; // default theme
+  const enabled = result.enabled !== false;
+  const theme = result.theme || "dim";
 
   if (enabled) {
     applyTheme(theme);
   }
 
-  // Listen for changes from popup
+  // Listen for changes from popup or keyboard shortcut
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== "sync") return;
 
