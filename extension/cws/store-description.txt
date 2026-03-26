@@ -1,0 +1,34 @@
+Dark Mode for Google Workspace — finally, a dark theme that works across Docs, Sheets, Slides, and Drive.
+
+Tired of staring at blinding white screens while working in Google Workspace? This extension applies a clean, consistent dark mode to all four Google Workspace apps instantly.
+
+★ THREE BUILT-IN THEMES
+• Dim — A soft, easy-on-the-eyes purple-grey theme for extended use
+• Midnight — Deep dark blue for late-night work sessions
+• OLED Black — True black for OLED displays, maximum contrast and battery savings
+
+★ WORKS EVERYWHERE
+• Google Docs — document editor, menus, toolbars, comments, dialogs
+• Google Sheets — cells, formula bar, sheet tabs, frozen rows/columns
+• Google Slides — filmstrip, speaker notes, animation panels
+• Google Drive — file list, navigation, folder views
+
+★ KEYBOARD SHORTCUT
+Toggle dark mode on/off instantly with Alt+D. No need to open the popup.
+
+★ LIGHTWEIGHT & PRIVATE
+• No account required — works immediately after install
+• No data collection — your browsing stays private
+• No external API calls — everything runs locally
+• Only permission needed: storage (to remember your theme preference)
+• Under 15KB total — loads instantly, zero performance impact
+
+★ HOW TO USE
+1. Install the extension
+2. Click the icon or press Alt+D to toggle dark mode
+3. Choose your preferred theme from the popup
+4. Your choice syncs across all your Chrome devices
+
+Built for students, writers, designers, and anyone who spends hours in Google Workspace. Reduce eye strain. Work comfortably at night. Save battery on OLED screens.
+
+Free to use. No ads. No upsells.
