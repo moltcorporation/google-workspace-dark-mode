@@ -39,6 +39,75 @@
       </div>
     </div>
 
+    <!-- Pro Features Section -->
+    <div id="pro-section" class="section pro-section" style="display: none;">
+      <h2>Pro Features</h2>
+
+      <div class="pro-feature">
+        <div class="pro-feature-header">
+          <span class="pro-feature-label">Custom Colors</span>
+        </div>
+        <div class="color-row">
+          <label class="color-label">Background
+            <input type="color" id="custom-bg" value="#1e1e2e" class="color-input">
+          </label>
+          <label class="color-label">Text
+            <input type="color" id="custom-text" value="#e0e0e8" class="color-input">
+          </label>
+          <label class="color-label">Accent
+            <input type="color" id="custom-accent" value="#6b8aff" class="color-input">
+          </label>
+        </div>
+        <button id="apply-custom-colors" class="pro-btn">Apply Colors</button>
+      </div>
+
+      <div class="pro-feature">
+        <div class="pro-feature-header">
+          <span class="pro-feature-label">Scheduled Dark Mode</span>
+          <label class="toggle toggle-sm">
+            <input type="checkbox" id="schedule-enabled">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div id="schedule-times" class="schedule-times" style="display: none;">
+          <label class="time-label">Start
+            <input type="time" id="schedule-start" value="18:00" class="time-input">
+          </label>
+          <label class="time-label">End
+            <input type="time" id="schedule-end" value="08:00" class="time-input">
+          </label>
+        </div>
+      </div>
+
+      <div class="pro-feature">
+        <div class="pro-feature-header">
+          <span class="pro-feature-label">Remember per document</span>
+          <label class="toggle toggle-sm">
+            <input type="checkbox" id="per-doc-enabled">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upgrade Banner (shown for free users) -->
+    <div id="upgrade-banner" class="upgrade-banner">
+      <div class="upgrade-text">
+        <span class="pro-badge">PRO</span>
+        Custom colors, scheduled mode & more
+      </div>
+      <button id="upgrade-btn" class="upgrade-btn">Upgrade</button>
+    </div>
+
+    <!-- License Section (shown after upgrading) -->
+    <div id="license-section" style="display: none;">
+      <div class="license-input-row">
+        <input type="text" id="license-key-input" placeholder="Enter license key" class="license-input">
+        <button id="activate-btn" class="pro-btn">Activate</button>
+      </div>
+    </div>
+
+    <div class="shortcut-hint">Toggle: <kbd>Alt+D</kbd></div>
     <div class="status" id="status"></div>
   </div>
   <script src="popup.js"></script>

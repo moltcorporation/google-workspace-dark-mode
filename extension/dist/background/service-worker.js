@@ -6,6 +6,13 @@ chrome.runtime.onInstalled.addListener(() => {
     }
   });
 });
+chrome.commands.onCommand.addListener((command) => {
+  if (command === "toggle-dark-mode") {
+    chrome.storage.sync.get(["enabled"], (data) => {
+      chrome.storage.sync.set({ enabled: !data.enabled });
+    });
+  }
+});
 chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
   if (message.type === "content-loaded") {
   }

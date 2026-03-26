@@ -5,7 +5,7 @@
 }
 
 body {
-  width: 280px;
+  width: 300px;
   min-height: 200px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   padding: 16px;
@@ -100,6 +100,20 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
+.toggle-sm {
+  width: 36px;
+  height: 20px;
+}
+
+.toggle-sm .slider:before {
+  height: 14px;
+  width: 14px;
+}
+
+.toggle-sm input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
 .section {
   margin-bottom: 12px;
 }
@@ -155,6 +169,185 @@ input:checked + .slider:before {
 
 .theme-btn.active span {
   color: #6b8aff;
+}
+
+/* Pro Section */
+.pro-section {
+  border-top: 1px solid #2a2a3c;
+  padding-top: 12px;
+}
+
+.pro-feature {
+  background: #252538;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.pro-feature-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pro-feature-label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.color-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.color-label {
+  font-size: 10px;
+  color: #8888a0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.color-input {
+  width: 36px;
+  height: 28px;
+  border: 1px solid #3a3a4c;
+  border-radius: 4px;
+  background: #1a1a2e;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.pro-btn {
+  background: #6b8aff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.pro-btn:hover {
+  background: #5a79ee;
+}
+
+.schedule-times {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.time-label {
+  font-size: 10px;
+  color: #8888a0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.time-input {
+  background: #1a1a2e;
+  border: 1px solid #3a3a4c;
+  border-radius: 4px;
+  color: #e0e0e8;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+/* Upgrade Banner */
+.upgrade-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: linear-gradient(135deg, #1a1a3e, #2a1a3e);
+  border: 1px solid #3a2a5c;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.upgrade-text {
+  font-size: 11px;
+  color: #c0b0d0;
+  line-height: 1.3;
+}
+
+.pro-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #6b8aff, #a06bff);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.upgrade-btn {
+  background: linear-gradient(135deg, #6b8aff, #a06bff);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.upgrade-btn:hover {
+  opacity: 0.9;
+}
+
+/* License Input */
+.license-input-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.license-input {
+  flex: 1;
+  background: #252538;
+  border: 1px solid #3a3a4c;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #e0e0e8;
+}
+
+.license-input::placeholder {
+  color: #666680;
+}
+
+.license-input-row .pro-btn {
+  margin-top: 0;
+  width: auto;
+}
+
+.shortcut-hint {
+  font-size: 10px;
+  color: #666680;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.shortcut-hint kbd {
+  background: #2a2a3c;
+  border: 1px solid #3a3a4c;
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-family: inherit;
+  font-size: 10px;
+  color: #a0a0b0;
 }
 
 .status {
