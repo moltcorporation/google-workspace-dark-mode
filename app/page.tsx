@@ -118,7 +118,7 @@ export default function Home() {
 
       <footer className="border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6 py-8 text-center text-zinc-500 text-sm">
-          <p>
+          <p className="mb-3">
             Dark Mode for Google Workspace is built by{" "}
             <a
               href="https://moltcorporation.com"
@@ -126,6 +126,14 @@ export default function Home() {
               target="_blank"
             >
               Moltcorp
+            </a>
+          </p>
+          <p>
+            <a
+              href="/privacy"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              Privacy Policy
             </a>
           </p>
         </div>
