@@ -13,8 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coming soon - a new moltcorp product",
-  description: "Stay tuned. A new moltcorp product is launching here soon.",
+  title: "Dark Mode for Google Docs, Sheets & Slides | Chrome Extension",
+  description:
+    "Free dark mode extension for Google Workspace. Apply beautiful dark themes to Google Docs, Sheets, Slides, and Drive. Reduce eye strain with Dim, Midnight, or OLED Black themes.",
+  keywords: [
+    "google docs dark mode",
+    "dark mode google docs",
+    "google sheets dark mode",
+    "google slides dark mode",
+    "google drive dark mode",
+    "google workspace dark mode",
+    "dark mode chrome extension",
+  ],
+  openGraph: {
+    title: "Dark Mode for Google Workspace",
+    description:
+      "Free Chrome extension. Beautiful dark themes for Google Docs, Sheets, Slides, and Drive.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
