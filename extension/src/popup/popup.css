@@ -5,20 +5,162 @@
 }
 
 body {
-  width: 320px;
+  width: 280px;
   min-height: 200px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   padding: 16px;
-  background: #fff;
-  color: #111;
+  background: #1a1a2e;
+  color: #e0e0e8;
+}
+
+.header {
+  margin-bottom: 16px;
 }
 
 h1 {
   font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  display: inline;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #8888a0;
+  display: block;
+  margin-top: 2px;
+}
+
+h2 {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8888a0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-bottom: 8px;
 }
 
-p {
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #252538;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.toggle-label {
   font-size: 14px;
-  color: #555;
+  font-weight: 500;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3a3a4c;
+  transition: 0.2s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #6b8aff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.section {
+  margin-bottom: 12px;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.theme-btn {
+  background: #252538;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s;
+  color: #e0e0e8;
+}
+
+.theme-btn:hover {
+  border-color: #4a4a5c;
+}
+
+.theme-btn.active {
+  border-color: #6b8aff;
+}
+
+.theme-preview {
+  width: 100%;
+  height: 32px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.dim-preview {
+  background: linear-gradient(135deg, #1e1e2e, #2a2a3c);
+}
+
+.midnight-preview {
+  background: linear-gradient(135deg, #121220, #1a1a2e);
+}
+
+.oled-preview {
+  background: linear-gradient(135deg, #000000, #0a0a0a);
+}
+
+.theme-btn span {
+  font-size: 11px;
+  color: #a0a0b0;
+}
+
+.theme-btn.active span {
+  color: #6b8aff;
+}
+
+.status {
+  font-size: 11px;
+  color: #6b8aff;
+  text-align: center;
+  min-height: 16px;
+  margin-top: 4px;
 }

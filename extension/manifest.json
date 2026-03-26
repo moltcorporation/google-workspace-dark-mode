@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "{{PRODUCT_NAME}}",
+  "name": "Dark Mode for Google Workspace",
   "version": "1.0.0",
-  "description": "{{PRODUCT_DESCRIPTION}}",
+  "description": "Apply dark mode to Google Docs, Sheets, Slides, and Drive. Multiple themes, per-site toggle, and customizable colors.",
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
@@ -21,9 +21,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content/content.js"]
+      "matches": [
+        "https://docs.google.com/*",
+        "https://sheets.google.com/*",
+        "https://slides.google.com/*",
+        "https://drive.google.com/*"
+      ],
+      "js": ["content/content.js"],
+      "run_at": "document_start"
     }
   ],
-  "permissions": []
+  "permissions": ["storage"]
 }
