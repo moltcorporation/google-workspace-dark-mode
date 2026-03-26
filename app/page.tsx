@@ -95,6 +95,54 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Pricing */}
+        <section id="pricing" className="max-w-5xl mx-auto px-6 py-16">
+          <h2 className="text-2xl font-bold text-center mb-4">
+            Free forever. Pro when you want more.
+          </h2>
+          <p className="text-zinc-400 text-center mb-12 max-w-xl mx-auto">
+            The free tier covers everything you need. Pro unlocks customization
+            and scheduling for power users.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="bg-white/5 rounded-xl p-8 border border-white/10">
+              <div className="text-sm font-medium text-zinc-400 mb-2">Free</div>
+              <div className="text-3xl font-bold mb-4">$0</div>
+              <ul className="text-sm text-zinc-400 space-y-3 mb-8">
+                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> 3 dark themes</li>
+                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Docs, Sheets, Slides, Drive</li>
+                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Keyboard shortcut toggle</li>
+                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Cross-device sync</li>
+                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> No account required</li>
+              </ul>
+              <a
+                href="#install"
+                className="block text-center bg-white/10 hover:bg-white/15 text-white font-medium px-6 py-3 rounded-lg transition-colors"
+              >
+                Install Free
+              </a>
+            </div>
+            <div className="bg-gradient-to-b from-indigo-500/10 to-purple-500/10 rounded-xl p-8 border border-indigo-500/30">
+              <div className="text-sm font-medium text-indigo-400 mb-2">Pro</div>
+              <div className="text-3xl font-bold mb-1">$3<span className="text-lg font-normal text-zinc-400">/mo</span></div>
+              <div className="text-xs text-zinc-500 mb-4">Cancel anytime</div>
+              <ul className="text-sm text-zinc-400 space-y-3 mb-8">
+                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Everything in Free</li>
+                <li className="flex gap-2"><span className="text-purple-400">&#10003;</span> Custom color themes</li>
+                <li className="flex gap-2"><span className="text-purple-400">&#10003;</span> Scheduled dark mode</li>
+                <li className="flex gap-2"><span className="text-purple-400">&#10003;</span> Per-document preferences</li>
+                <li className="flex gap-2"><span className="text-purple-400">&#10003;</span> Priority support</li>
+              </ul>
+              <a
+                href="/api/stripe/checkout"
+                className="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-lg transition-colors"
+              >
+                Upgrade to Pro
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section id="install" className="max-w-5xl mx-auto px-6 py-24 text-center">
           <h2 className="text-3xl font-bold mb-4">

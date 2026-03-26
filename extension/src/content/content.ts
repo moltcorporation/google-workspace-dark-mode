@@ -9,6 +9,29 @@ interface ThemeColors {
   canvasBg: string;
 }
 
+function buildCustomTheme(custom: { bg: string; text: string; accent: string }): ThemeColors {
+  // Derive secondary/tertiary colors from the base
+  const lighten = (hex: string, amt: number) => {
+    const num = parseInt(hex.replace("#", ""), 16);
+    const r = Math.min(255, (num >> 16) + amt);
+    const g = Math.min(255, ((num >> 8) & 0x00ff) + amt);
+    const b = Math.min(255, (num & 0x0000ff) + amt);
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+  };
+  const darken = (hex: string, amt: number) => lighten(hex, -amt);
+
+  return {
+    bg: custom.bg,
+    bgSecondary: lighten(custom.bg, 16),
+    bgTertiary: lighten(custom.bg, 28),
+    text: custom.text,
+    textSecondary: darken(custom.text, 40),
+    border: lighten(custom.bg, 32),
+    accent: custom.accent,
+    canvasBg: lighten(custom.bg, 12),
+  };
+}
+
 const themes: Record<string, ThemeColors> = {
   dim: {
     bg: "#1e1e2e",
@@ -388,8 +411,15 @@ function generateCSS(colors: ThemeColors): string {
 const STYLE_ID = "gws-dark-mode-styles";
 let observer: MutationObserver | null = null;
 
-function applyTheme(themeName: string): void {
-  const colors = themes[themeName];
+function resolveColors(themeName: string, customTheme?: { bg: string; text: string; accent: string }): ThemeColors | null {
+  if (themeName === "custom" && customTheme) {
+    return buildCustomTheme(customTheme);
+  }
+  return themes[themeName] || null;
+}
+
+function applyTheme(themeName: string, customTheme?: { bg: string; text: string; accent: string }): void {
+  const colors = resolveColors(themeName, customTheme);
   if (!colors) return;
 
   let styleEl = document.getElementById(STYLE_ID) as HTMLStyleElement | null;
@@ -400,7 +430,7 @@ function applyTheme(themeName: string): void {
   }
   styleEl.textContent = generateCSS(colors);
 
-  startObserver(themeName);
+  startObserver(themeName, customTheme);
 }
 
 function removeTheme(): void {
@@ -409,10 +439,10 @@ function removeTheme(): void {
   stopObserver();
 }
 
-function startObserver(themeName: string): void {
+function startObserver(themeName: string, customTheme?: { bg: string; text: string; accent: string }): void {
   stopObserver();
 
-  const colors = themes[themeName];
+  const colors = resolveColors(themeName, customTheme);
   if (!colors) return;
 
   observer = new MutationObserver((mutations) => {
@@ -422,14 +452,14 @@ function startObserver(themeName: string): void {
 
         // Re-inject style if it was removed (Google sometimes clears head)
         if (!document.getElementById(STYLE_ID)) {
-          applyTheme(themeName);
+          applyTheme(themeName, customTheme);
           return;
         }
 
         // Handle dynamically added iframes (Google Docs editor frames)
         const iframes = node.tagName === "IFRAME" ? [node as HTMLIFrameElement] : node.querySelectorAll("iframe");
         for (const iframe of iframes) {
-          injectIntoIframe(iframe as HTMLIFrameElement, themeName);
+          injectIntoIframe(iframe as HTMLIFrameElement, themeName, customTheme);
         }
       }
     }
@@ -448,8 +478,8 @@ function stopObserver(): void {
   }
 }
 
-function injectIntoIframe(iframe: HTMLIFrameElement, themeName: string): void {
-  const colors = themes[themeName];
+function injectIntoIframe(iframe: HTMLIFrameElement, themeName: string, customTheme?: { bg: string; text: string; accent: string }): void {
+  const colors = resolveColors(themeName, customTheme);
   if (!colors) return;
 
   const inject = () => {
@@ -487,13 +517,55 @@ function getCurrentApp(): string {
   return "unknown";
 }
 
+function isInSchedule(schedule: { enabled: boolean; start: string; end: string }): boolean {
+  if (!schedule?.enabled) return true; // No schedule means always on
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  const [startH, startM] = schedule.start.split(":").map(Number);
+  const [endH, endM] = schedule.end.split(":").map(Number);
+  const startMinutes = startH * 60 + startM;
+  const endMinutes = endH * 60 + endM;
+
+  if (startMinutes <= endMinutes) {
+    // Same day range (e.g., 09:00 - 17:00)
+    return currentMinutes >= startMinutes && currentMinutes < endMinutes;
+  } else {
+    // Overnight range (e.g., 18:00 - 08:00)
+    return currentMinutes >= startMinutes || currentMinutes < endMinutes;
+  }
+}
+
+function getDocumentKey(): string {
+  return window.location.pathname.split("/")[3] || window.location.pathname;
+}
+
 async function init(): Promise<void> {
-  const result = await chrome.storage.sync.get(["enabled", "theme"]);
-  const enabled = result.enabled !== false;
+  const result = await chrome.storage.sync.get([
+    "enabled", "theme", "isPro", "customTheme",
+    "scheduledDarkMode", "perDocumentEnabled",
+  ]);
+  let enabled = result.enabled !== false;
   const theme = result.theme || "dim";
+  const isPro = result.isPro === true;
+
+  // Check scheduled dark mode (Pro feature)
+  if (isPro && result.scheduledDarkMode?.enabled) {
+    enabled = enabled && isInSchedule(result.scheduledDarkMode);
+  }
+
+  // Check per-document preferences (Pro feature)
+  if (isPro && result.perDocumentEnabled) {
+    const docKey = getDocumentKey();
+    const docPrefs = await chrome.storage.sync.get(`doc_${docKey}`);
+    const docPref = docPrefs[`doc_${docKey}`];
+    if (docPref !== undefined) {
+      enabled = docPref;
+    }
+  }
 
   if (enabled) {
-    applyTheme(theme);
+    applyTheme(theme, isPro ? result.customTheme : undefined);
   }
 
   // Listen for changes from popup or keyboard shortcut
@@ -502,16 +574,37 @@ async function init(): Promise<void> {
 
     const newEnabled = changes.enabled?.newValue;
     const newTheme = changes.theme?.newValue;
+    const newCustomTheme = changes.customTheme?.newValue;
 
     if (newEnabled === false) {
+      // If per-document mode is on, save this document's preference
+      chrome.storage.sync.get(["perDocumentEnabled", "isPro"], (data) => {
+        if (data.isPro && data.perDocumentEnabled) {
+          const docKey = getDocumentKey();
+          chrome.storage.sync.set({ [`doc_${docKey}`]: false });
+        }
+      });
       removeTheme();
       return;
     }
 
-    if (newEnabled === true || newTheme) {
-      chrome.storage.sync.get(["enabled", "theme"], (data) => {
-        if (data.enabled !== false) {
-          applyTheme(data.theme || "dim");
+    if (newEnabled === true || newTheme || newCustomTheme) {
+      chrome.storage.sync.get(["enabled", "theme", "isPro", "customTheme", "scheduledDarkMode", "perDocumentEnabled"], (data) => {
+        if (data.enabled === false) return;
+
+        let shouldApply = true;
+        if (data.isPro && data.scheduledDarkMode?.enabled) {
+          shouldApply = isInSchedule(data.scheduledDarkMode);
+        }
+
+        if (shouldApply) {
+          applyTheme(data.theme || "dim", data.isPro ? data.customTheme : undefined);
+
+          // Save per-document preference as enabled
+          if (data.isPro && data.perDocumentEnabled) {
+            const docKey = getDocumentKey();
+            chrome.storage.sync.set({ [`doc_${docKey}`]: true });
+          }
         }
       });
     }
@@ -519,6 +612,22 @@ async function init(): Promise<void> {
 
   // Notify background about current app
   chrome.runtime.sendMessage({ type: "content-loaded", app: getCurrentApp() });
+
+  // Set up schedule check interval (Pro feature, check every minute)
+  if (isPro && result.scheduledDarkMode?.enabled) {
+    setInterval(() => {
+      chrome.storage.sync.get(["enabled", "theme", "isPro", "customTheme", "scheduledDarkMode"], (data) => {
+        if (!data.isPro || !data.scheduledDarkMode?.enabled || data.enabled === false) return;
+        const shouldBeOn = isInSchedule(data.scheduledDarkMode);
+        const isOn = !!document.getElementById(STYLE_ID);
+        if (shouldBeOn && !isOn) {
+          applyTheme(data.theme || "dim", data.customTheme);
+        } else if (!shouldBeOn && isOn) {
+          removeTheme();
+        }
+      });
+    }, 60000);
+  }
 }
 
 init();
