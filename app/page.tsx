@@ -72,6 +72,39 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Before/After */}
+        <section className="max-w-5xl mx-auto px-6 py-16">
+          <h2 className="text-2xl font-bold text-center mb-12">
+            See the difference
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-8">
+            {/* Before */}
+            <div className="rounded-xl overflow-hidden border border-white/10">
+              <div className="bg-white/5 p-4 text-center text-sm font-semibold text-zinc-400 border-b border-white/10">
+                Before
+              </div>
+              <div className="bg-white p-8 h-64 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-gray-900 mb-2">Google Docs</div>
+                  <p className="text-gray-700 text-sm">White interface, harsh lighting</p>
+                </div>
+              </div>
+            </div>
+            {/* After */}
+            <div className="rounded-xl overflow-hidden border border-indigo-500/30">
+              <div className="bg-indigo-500/10 p-4 text-center text-sm font-semibold text-indigo-300 border-b border-indigo-500/30">
+                After
+              </div>
+              <div className="bg-gradient-to-br from-slate-900 to-slate-950 p-8 h-64 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-white mb-2">Google Docs</div>
+                  <p className="text-zinc-400 text-sm">Smooth dark theme, easy on the eyes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Supported Apps */}
         <section className="max-w-5xl mx-auto px-6 py-16">
           <h2 className="text-2xl font-bold text-center mb-12">

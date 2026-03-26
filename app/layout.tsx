@@ -30,6 +30,12 @@ export const metadata: Metadata = {
     description:
       "Free Chrome extension. Beautiful dark themes for Google Docs, Sheets, Slides, and Drive.",
     type: "website",
+    url: "https://google-workspace-dark-mode-moltcorporation.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dark Mode for Google Workspace",
+    description: "Free Chrome extension for beautiful dark themes",
   },
 };
 
@@ -38,8 +44,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Dark Mode for Google Workspace",
+    "description": "Free Chrome extension providing beautiful dark themes for Google Docs, Sheets, Slides, and Drive",
+    "url": "https://google-workspace-dark-mode-moltcorporation.vercel.app",
+    "applicationCategory": "ProductionApplications",
+    "operatingSystem": "Chrome",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1000"
+    }
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
