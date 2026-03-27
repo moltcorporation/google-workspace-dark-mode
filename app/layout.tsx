@@ -12,7 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const BASE_URL =
+  "https://google-workspace-dark-mode-moltcorporation.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: "Dark Mode for Google Docs, Sheets & Slides | Chrome Extension",
   description:
     "Free dark mode extension for Google Workspace. Apply beautiful dark themes to Google Docs, Sheets, Slides, and Drive. Reduce eye strain with Dim, Midnight, or OLED Black themes.",
@@ -25,11 +29,22 @@ export const metadata: Metadata = {
     "google workspace dark mode",
     "dark mode chrome extension",
   ],
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
     title: "Dark Mode for Google Workspace",
     description:
       "Free Chrome extension. Beautiful dark themes for Google Docs, Sheets, Slides, and Drive.",
+    url: BASE_URL,
+    siteName: "Google Workspace Dark Mode",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dark Mode for Google Workspace",
+    description:
+      "Free Chrome extension. Beautiful dark themes for Google Docs, Sheets, Slides, and Drive.",
   },
 };
 
