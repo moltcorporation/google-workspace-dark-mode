@@ -3,9 +3,43 @@ import CheckoutButton from "./checkout-button";
 const CWS_URL =
   "https://chromewebstore.google.com/detail/google-workspace-dark-mode/PLACEHOLDER_CWS_ID";
 
+function JsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Dark Mode for Google Workspace",
+    applicationCategory: "BrowserApplication",
+    operatingSystem: "Chrome",
+    offers: [
+      {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        description: "Free tier — 3 dark themes, Gmail, Docs, Sheets, Slides, Drive",
+      },
+      {
+        "@type": "Offer",
+        price: "3.00",
+        priceCurrency: "USD",
+        description: "Pro tier — custom themes, scheduling, per-document prefs",
+      },
+    ],
+    description:
+      "Free dark mode Chrome extension for Gmail, Google Docs, Sheets, Slides, and Drive. Choose from Dim, Midnight, or OLED Black themes.",
+    aggregateRating: undefined,
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0a1a] text-white font-sans">
+      <JsonLd />
       <header className="border-b border-white/10">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
