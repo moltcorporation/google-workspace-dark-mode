@@ -676,8 +676,17 @@ function isInSchedule(schedule: { enabled: boolean; start: string; end: string }
   }
 }
 
-function getDocumentKey(): string {
-  return window.location.pathname.split("/")[3] || window.location.pathname;
+// Google Workspace URL structures:
+// Docs:   /document/d/{docId}/edit     → index 3 = docId
+// Sheets: /spreadsheets/d/{docId}/edit → index 3 = docId
+// Slides: /presentation/d/{docId}/edit → index 3 = docId
+// Drive:  /drive/u/0/...              → no meaningful document context
+function getDocumentKey(): string | null {
+  if (window.location.hostname === "drive.google.com") return null;
+  const parts = window.location.pathname.split("/");
+  // Only return a key if URL matches the /type/d/{id} pattern
+  if (parts[2] === "d" && parts[3]) return parts[3];
+  return null;
 }
 
 async function init(): Promise<void> {
@@ -694,13 +703,15 @@ async function init(): Promise<void> {
     enabled = enabled && isInSchedule(result.scheduledDarkMode);
   }
 
-  // Check per-document preferences (Pro feature)
+  // Check per-document preferences (Pro feature, skipped on Drive)
   if (isPro && result.perDocumentEnabled) {
     const docKey = getDocumentKey();
-    const docPrefs = await chrome.storage.sync.get(`doc_${docKey}`);
-    const docPref = docPrefs[`doc_${docKey}`];
-    if (docPref !== undefined) {
-      enabled = docPref;
+    if (docKey) {
+      const docPrefs = await chrome.storage.sync.get(`doc_${docKey}`);
+      const docPref = docPrefs[`doc_${docKey}`];
+      if (docPref !== undefined) {
+        enabled = docPref;
+      }
     }
   }
 
@@ -721,7 +732,7 @@ async function init(): Promise<void> {
       chrome.storage.sync.get(["perDocumentEnabled", "isPro"], (data) => {
         if (data.isPro && data.perDocumentEnabled) {
           const docKey = getDocumentKey();
-          chrome.storage.sync.set({ [`doc_${docKey}`]: false });
+          if (docKey) chrome.storage.sync.set({ [`doc_${docKey}`]: false });
         }
       });
       removeTheme();
@@ -740,10 +751,10 @@ async function init(): Promise<void> {
         if (shouldApply) {
           applyTheme(data.theme || "dim", data.isPro ? data.customTheme : undefined);
 
-          // Save per-document preference as enabled
+          // Save per-document preference as enabled (skipped on Drive)
           if (data.isPro && data.perDocumentEnabled) {
             const docKey = getDocumentKey();
-            chrome.storage.sync.set({ [`doc_${docKey}`]: true });
+            if (docKey) chrome.storage.sync.set({ [`doc_${docKey}`]: true });
           }
         }
       });
