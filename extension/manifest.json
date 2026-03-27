@@ -33,7 +33,8 @@
         "https://docs.google.com/*",
         "https://sheets.google.com/*",
         "https://slides.google.com/*",
-        "https://drive.google.com/*"
+        "https://drive.google.com/*",
+        "https://mail.google.com/*"
       ],
       "js": ["content/content.js"],
       "run_at": "document_start",

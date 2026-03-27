@@ -281,6 +281,145 @@ function generateCSS(colors: ThemeColors): string {
       background-color: ${colors.bgTertiary} !important;
     }
 
+    /* ---- Gmail specific ---- */
+
+    /* Gmail main background and body */
+    .aH2, .aeJ, .nH, .bkK,
+    .no, .nn, .aeH,
+    .aE3, .bAo,
+    div[role="main"],
+    .aia {
+      background-color: ${colors.bg} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail sidebar / nav */
+    .aBA, .bsU, .akc,
+    .wT, .byl,
+    .TK, .aim,
+    div[role="navigation"],
+    .aeN, .nZ,
+    .aAv, .Xa {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail sidebar labels and items */
+    .aio, .nU, .aim,
+    .TO, .n3, .CL,
+    .TN.aHS-bnt, .TN,
+    [data-tooltip] {
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail inbox list / message rows */
+    .ae4, .aeF,
+    .Cp, .Cq,
+    tr.zA, tr.zE,
+    .yO, .x7,
+    .xY, .xS {
+      background-color: ${colors.bg} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Unread vs read message rows */
+    tr.zE {
+      background-color: ${colors.bgSecondary} !important;
+    }
+
+    /* Gmail message row hover */
+    tr.zA:hover, tr.zE:hover {
+      background-color: ${colors.bgTertiary} !important;
+    }
+
+    /* Gmail message subject, snippet, sender */
+    .bog, .bqe, .y2, .y6,
+    .xT .y6, .xS .y2,
+    .bA4, .bAq,
+    span.bHE, span.zF, span.zA,
+    .yX .xY, .yW .xY {
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail thread view / reading pane */
+    .gs, .h7, .hx, .ii, .a3s,
+    .kQ, .kv,
+    .gE, .gH,
+    .nH .if, .nH .g6,
+    div.adn, div.ade {
+      background-color: ${colors.bg} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail message body text */
+    .a3s, .ii, .gmail_default,
+    div[dir="ltr"], div[dir="rtl"] {
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail compose window */
+    .AD, .Ap, .Am, .aoP,
+    .aO7, .aDj, .aDi,
+    .dC, .dL,
+    .An, .Ar, .wO, .aoT,
+    .agP, .btC, .akl,
+    div[role="dialog"].Kj-JD {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail compose input fields */
+    .Am .vO, .Am .vN,
+    .aoD, .aGb, .nr,
+    .agP input, .agP textarea,
+    .Am .editable, .editable,
+    div[contenteditable="true"] {
+      background-color: ${colors.bgTertiary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail top search bar */
+    .gb_Fd, .gb_Ed, .gb_Jf,
+    .aeH, .aRz,
+    #aso_search_form_anchor,
+    input[name="q"],
+    .gb_Lf, .gb_If {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+      border-color: ${colors.border} !important;
+    }
+
+    /* Gmail top header bar */
+    .aeH, .G-atb, .bAo,
+    header[role="banner"],
+    .aBC, .bzn {
+      background-color: ${colors.bgSecondary} !important;
+      border-color: ${colors.border} !important;
+    }
+
+    /* Gmail settings panels */
+    .Hy, .IU, .Q, .Hm,
+    .a8Y, .ZC,
+    div[role="tabpanel"] {
+      background-color: ${colors.bg} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail action buttons toolbar */
+    .G-Ni, .G-asx, .G-atb,
+    [gh="tm"], [gh="tl"],
+    .D.E, .J-J5-Ji {
+      background-color: ${colors.bgSecondary} !important;
+      color: ${colors.text} !important;
+    }
+
+    /* Gmail chips and labels */
+    .bx8, .ar, .at,
+    .J-awr, .J-ksX {
+      background-color: ${colors.bgTertiary} !important;
+      color: ${colors.text} !important;
+    }
+
     /* ---- Shared UI elements ---- */
 
     /* Dialogs and modals */
@@ -514,6 +653,7 @@ function getCurrentApp(): string {
   if (host === "sheets.google.com") return "sheets";
   if (host === "slides.google.com") return "slides";
   if (host === "drive.google.com") return "drive";
+  if (host === "mail.google.com") return "gmail";
   return "unknown";
 }
 
