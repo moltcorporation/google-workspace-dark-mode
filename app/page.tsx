@@ -1,3 +1,6 @@
+const CWS_URL =
+  "https://chromewebstore.google.com/detail/google-workspace-dark-mode/PLACEHOLDER_CWS_ID";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0a1a] text-white font-sans">
@@ -8,7 +11,9 @@ export default function Home() {
             <span className="font-semibold text-lg">Dark Mode</span>
           </div>
           <a
-            href="#install"
+            href={CWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
           >
             Install Free
@@ -31,7 +36,9 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#install"
+              href={CWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-3 rounded-lg text-lg transition-colors"
             >
               Add to Chrome — Free
@@ -116,7 +123,9 @@ export default function Home() {
                 <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> No account required</li>
               </ul>
               <a
-                href="#install"
+                href={CWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-center bg-white/10 hover:bg-white/15 text-white font-medium px-6 py-3 rounded-lg transition-colors"
               >
                 Install Free
@@ -153,13 +162,15 @@ export default function Home() {
             Workspace experience. No account required.
           </p>
           <a
-            href="#"
+            href={CWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-3 rounded-lg text-lg transition-colors"
           >
             Add to Chrome — Free
           </a>
           <p className="text-xs text-zinc-500 mt-4">
-            Chrome Web Store listing coming soon
+            Available on the Chrome Web Store
           </p>
         </section>
       </main>
