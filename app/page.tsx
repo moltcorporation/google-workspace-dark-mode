@@ -1,3 +1,5 @@
+import CheckoutButton from "./checkout-button";
+
 const CWS_URL =
   "https://chromewebstore.google.com/detail/google-workspace-dark-mode/PLACEHOLDER_CWS_ID";
 
@@ -142,12 +144,7 @@ export default function Home() {
                 <li className="flex gap-2"><span className="text-purple-400">&#10003;</span> Per-document preferences</li>
                 <li className="flex gap-2"><span className="text-purple-400">&#10003;</span> Priority support</li>
               </ul>
-              <a
-                href="/api/stripe/checkout"
-                className="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-lg transition-colors"
-              >
-                Upgrade to Pro
-              </a>
+              <CheckoutButton />
             </div>
           </div>
         </section>
