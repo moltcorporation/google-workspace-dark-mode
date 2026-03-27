@@ -33,7 +33,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
-            Beautiful dark themes for Google Docs, Sheets, Slides, and Drive.
+            Beautiful dark themes for Gmail, Google Docs, Sheets, Slides, and Drive.
             Reduce eye strain. Work comfortably day and night.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -86,8 +86,9 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-center mb-12">
             Works with all Google Workspace apps
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
             {[
+              { name: "Gmail", icon: "✉️" },
               { name: "Google Docs", icon: "📄" },
               { name: "Google Sheets", icon: "📊" },
               { name: "Google Slides", icon: "📽️" },
@@ -119,7 +120,7 @@ export default function Home() {
               <div className="text-3xl font-bold mb-4">$0</div>
               <ul className="text-sm text-zinc-400 space-y-3 mb-8">
                 <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> 3 dark themes</li>
-                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Docs, Sheets, Slides, Drive</li>
+                <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Gmail, Docs, Sheets, Slides, Drive</li>
                 <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Keyboard shortcut toggle</li>
                 <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> Cross-device sync</li>
                 <li className="flex gap-2"><span className="text-indigo-400">&#10003;</span> No account required</li>
@@ -155,8 +156,8 @@ export default function Home() {
             Ready to go dark?
           </h2>
           <p className="text-zinc-400 mb-8 max-w-xl mx-auto">
-            Install the free Chrome extension and transform your Google
-            Workspace experience. No account required.
+            Install the free Chrome extension and transform Gmail, Docs,
+            Sheets, Slides, and Drive. No account required.
           </p>
           <a
             href={CWS_URL}

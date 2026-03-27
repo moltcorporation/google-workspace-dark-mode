@@ -13,10 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dark Mode for Google Docs, Sheets & Slides | Chrome Extension",
+  title: "Dark Mode for Gmail, Google Docs, Sheets & Slides | Chrome Extension",
   description:
-    "Free dark mode extension for Google Workspace. Apply beautiful dark themes to Google Docs, Sheets, Slides, and Drive. Reduce eye strain with Dim, Midnight, or OLED Black themes.",
+    "Free dark mode extension for Google Workspace. Apply beautiful dark themes to Gmail, Google Docs, Sheets, Slides, and Drive. Reduce eye strain with Dim, Midnight, or OLED Black themes.",
   keywords: [
+    "gmail dark mode",
+    "dark mode gmail",
     "google docs dark mode",
     "dark mode google docs",
     "google sheets dark mode",
@@ -26,9 +28,9 @@ export const metadata: Metadata = {
     "dark mode chrome extension",
   ],
   openGraph: {
-    title: "Dark Mode for Google Workspace",
+    title: "Dark Mode for Gmail & Google Workspace",
     description:
-      "Free Chrome extension. Beautiful dark themes for Google Docs, Sheets, Slides, and Drive.",
+      "Free Chrome extension. Beautiful dark themes for Gmail, Google Docs, Sheets, Slides, and Drive.",
     type: "website",
   },
 };
